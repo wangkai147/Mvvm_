@@ -1,0 +1,12 @@
+<resources>
+    <string name="common_base_error">加载失败请稍后重试~</string>
+    <string name="common_base_loading">拼命加载中~</string>
+
+    <string name="ElseNetException">未知错误</string>
+    <string name="SocketTimeoutException">网络超时</string>
+    <string name="TimeoutException">网络超时</string>
+    <string name="SocketException">网络错误</string>
+    <string name="ConnectException">网络错误</string>
+    <string name="UnknownHostException">无网络连接</string>
+    <string name="JsonSyntaxException">数据错误,json错误</string>
+</resources>
