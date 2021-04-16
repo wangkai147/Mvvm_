@@ -3,8 +3,9 @@ package com.wangkai.base.application
 import android.app.Application
 import androidx.lifecycle.ProcessLifecycleOwner
 import kotlin.properties.Delegates
+open class BaseApplication(baseProcessLifecycleObserver:ProcessLifecycleObserver): Application() {
 
-open class BaseApplication: Application() {
+    var processLifecycleObserver = baseProcessLifecycleObserver
 
     companion object {
         var instance: BaseApplication by Delegates.notNull()
@@ -13,8 +14,7 @@ open class BaseApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        //添加应用生命周期观察者
-        ProcessLifecycleOwner.get().lifecycle.addObserver(ProcessLifecycleObserver())
+        ProcessLifecycleOwner.get().lifecycle.addObserver(processLifecycleObserver)
 
     }
 }
