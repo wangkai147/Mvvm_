@@ -1,6 +1,7 @@
 package com.wangkai.base.activity
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +29,6 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun initData()
     abstract fun initView()
     abstract fun initViewModel() //初始化ViewModel
-
 
 
     //网络状态页面
@@ -128,8 +128,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-
-
     //设置状态栏导航栏颜色
     open fun setBarColor(statusBarColor: Int, navigationBarColor: Int) {
         window.statusBarColor = statusBarColor
@@ -143,14 +141,31 @@ abstract class BaseActivity : AppCompatActivity() {
         controller?.hide(WindowInsetsCompat.Type.systemBars())
     }
 
-    private fun setPageStyle(){
+    //为全屏和横屏适配异形屏
+    private fun adaptiveSpecialScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.attributes.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
+    }
+
+    open fun isHorizontalScreen(): Boolean {
+        return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    }
+
+    private fun setPageStyle() {
+        //状态栏相关的
+        adaptiveSpecialScreen()
+        setBarColor(Color.TRANSPARENT, Color.TRANSPARENT)
         //WindowInsets目前还在测试版，故采用已废弃方法 -- 状态栏字体颜色
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-        setBarColor(Color.TRANSPARENT, Color.TRANSPARENT)
-        rootView.fitsSystemWindows = false
+
         //使布局延伸到状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
@@ -159,14 +174,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 ViewCompat.getWindowInsetsController(window.decorView)
             controller?.systemBarsBehavior
             WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            //适配异形屏
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.attributes.layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                window.attributes.layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            }
+
         } else {
             @Suppress("DEPRECATION")
             window.decorView.systemUiVisibility = (
