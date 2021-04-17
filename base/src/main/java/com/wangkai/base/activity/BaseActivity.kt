@@ -41,14 +41,13 @@ abstract class BaseActivity : AppCompatActivity() {
     private lateinit var rootView: ViewGroup
 
     //管理页面状态的viewModel
-    lateinit var stateViewModel: StateViewModel
+    val stateViewModel by lazy {
+        ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(
+            StateViewModel::class.java
+        )
+    }
 
     fun initStatusViewModel() {
-        //初始化状态的viewModel
-        stateViewModel =
-            ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(application)).get(
-                StateViewModel::class.java
-            )
         stateViewModel.stateLiveData.observe(this, { t ->
             t?.let {
                 when (t) {
@@ -72,45 +71,36 @@ abstract class BaseActivity : AppCompatActivity() {
 
     //显示加载中界面
     open fun showLoadingLayout(boolean: Boolean) {
-        if (boolean) {
-            try {
+        try {
+            inflaterLoading = vsLoading.inflate()
+        } catch (e: Exception) {
+            if (!::vsLoading.isInitialized) {
+                initStatusView()
                 inflaterLoading = vsLoading.inflate()
-            } catch (e: Exception) {
-                if (!::vsLoading.isInitialized) {
-                    initStatusView()
-                    inflaterLoading = vsLoading.inflate()
-                }
-            } finally {
-                inflaterLoading.visibility = View.VISIBLE
             }
-
-        } else {
-            try {
+        } finally {
+            if (boolean) {
+                inflaterLoading.visibility = View.VISIBLE
+            } else {
                 inflaterLoading.visibility = View.INVISIBLE
-            } catch (e: Exception) {
-
             }
         }
     }
 
     //显示加载错误界面
     open fun showErrorLayout(boolean: Boolean) {
-        if (boolean) {
-            try {
+        try {
+            inflaterError = vsError.inflate()
+        } catch (e: Exception) {
+            if (!::vsError.isInitialized) {
+                initStatusView()
                 inflaterError = vsError.inflate()
-            } catch (e: Exception) {
-                if (!::vsError.isInitialized) {
-                    initStatusView()
-                    inflaterError = vsError.inflate()
-                }
-            } finally {
-                inflaterError.visibility = View.VISIBLE
             }
-        } else {
-            try {
+        } finally {
+            if (boolean) {
+                inflaterError.visibility = View.VISIBLE
+            } else {
                 inflaterError.visibility = View.INVISIBLE
-            } catch (e: Exception) {
-
             }
         }
     }
