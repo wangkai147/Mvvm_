@@ -21,7 +21,7 @@ abstract class StateDataBindingBaseActivity<DB : ViewDataBinding> : StateBaseAct
         mDataBinding = DataBindingUtil.inflate(
             LayoutInflater.from(mContext),
             layoutResID, null, false
-        );
+        )
         mDataBinding.lifecycleOwner = this
         super.setContentView(mDataBinding.root)
     }

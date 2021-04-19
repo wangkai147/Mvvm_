@@ -5,7 +5,3 @@ sealed class VmState{
     object Error: VmState()
     object Empty: VmState()
 }
-
-private fun changePage(state:EState){
-
-}
