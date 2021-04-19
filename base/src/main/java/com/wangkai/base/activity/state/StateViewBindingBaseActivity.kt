@@ -1,4 +1,4 @@
-package com.wangkai.base.activity
+package com.wangkai.base.activity.state
 
 import android.os.Bundle
 import android.view.*
@@ -7,8 +7,13 @@ import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 
+/**
+ * @Description: 带有状态管理的baseActivity
+ * @Author: JWangZzz
+ * @CreateDate: 2021/4/19 10:22
+ */
 
-abstract class ViewBindingBaseActivity<VB : ViewBinding> : BaseActivity() {
+abstract class StateViewBindingBaseActivity<VB : ViewBinding> : StateBaseActivity() {
 
     lateinit var mViewBinding: VB
 

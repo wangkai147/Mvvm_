@@ -1,7 +1,9 @@
 package com.wangkai.base.status
 
 /**
- * 当前页面状态
+ * @Description: 页面状态
+ * @Author: JWangZzz
+ * @CreateDate: 2021/4/19 10:22
  */
 
 enum class EState {

@@ -1,7 +1,9 @@
 package com.wangkai.base.status
 
 /**
- * 带有页面状态的viewModel
+ * @Description: 页面状态的viewModel
+ * @Author: JWangZzz
+ * @CreateDate: 2021/4/19 10:22
  */
 
 import android.app.Application

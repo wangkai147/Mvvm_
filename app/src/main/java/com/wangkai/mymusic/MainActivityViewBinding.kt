@@ -7,10 +7,9 @@ import com.wangkai.mymusic.databinding.ActivityMainBinding
 class MainActivityViewBinding : ViewBindingBaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setFullScreen()
+
         mViewBinding.getNet.setOnClickListener {
-            stateViewModel.getNet()
-//            startActivity<StartActivity>()
+
         }
     }
 

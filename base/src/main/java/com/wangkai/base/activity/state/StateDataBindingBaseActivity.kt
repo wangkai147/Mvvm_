@@ -1,19 +1,19 @@
-package com.wangkai.base.activity
+package com.wangkai.base.activity.state
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.wangkai.base.R
-import com.wangkai.base.utils.LogUtil
 
+/**
+ * @Description: 带有状态管理的baseActivity
+ * @Author: JWangZzz
+ * @CreateDate: 2021/4/19 10:22
+ */
 
-abstract class DataBindingBaseActivity<DB : ViewDataBinding> : BaseActivity() {
+abstract class StateDataBindingBaseActivity<DB : ViewDataBinding> : StateBaseActivity() {
     lateinit var mDataBinding: DB
 
     @RequiresApi(Build.VERSION_CODES.P)
