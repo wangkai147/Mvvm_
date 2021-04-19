@@ -10,6 +10,7 @@ import android.view.*
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.wangkai.base.R
 import com.wangkai.base.status.EState
@@ -48,7 +49,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun initStatusViewModel() {
-        stateViewModel.stateLiveData.observe(this, { t ->
+        stateViewModel.stateLiveData.observe(this, Observer{ t ->
             t?.let {
                 when (t) {
                     EState.Loading -> {
