@@ -24,11 +24,9 @@ open class StateViewModel(application: Application) : AndroidViewModel(applicati
     fun getNet() {
         // 延迟3秒后修改数据，UI自动更新
         Thread {
+            stateLiveData.postValue(EState.Loading)
             SystemClock.sleep(3000)
-            if (stateLiveData.value == EState.None)
-                stateLiveData.postValue(EState.Error)
-            else
-                stateLiveData.postValue(EState.Loading)
+            stateLiveData.postValue(EState.Error)
         }.start()
     }
 

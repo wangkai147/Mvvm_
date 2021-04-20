@@ -11,8 +11,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- 因为适配了异形屏，所以加此属性给activity设置一个padding. -->
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!-- 因为适配了异形屏，所以加此属性给activity设置一个padding. -->
         <item name="android:fitsSystemWindows">true</item>
     </style>
 </resources>

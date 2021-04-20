@@ -23,18 +23,21 @@ abstract class StateDataBindingBaseActivity<DB : ViewDataBinding> : StateBaseAct
             layoutResID, null, false
         )
         mDataBinding.lifecycleOwner = this
-        super.setContentView(mDataBinding.root)
+        super.setContentView(getLayout())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setCreateBefore()
         super.onCreate(savedInstanceState)
         setContentBefore()
-        setContentView(mDataBinding.root)
+        setContentView(getLayout())
         initView()
         initData()
     }
 
+    override fun getLayout(): ViewGroup {
+        return mDataBinding.root as ViewGroup
+    }
 
 
 }

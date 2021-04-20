@@ -27,7 +27,7 @@ abstract class StateViewBindingBaseActivity<VB : ViewBinding> : StateBaseActivit
             val method: Method = clazz.getDeclaredMethod("inflate", LayoutInflater::class.java)
             @Suppress("UNCHECKED_CAST")
             mViewBinding = method.invoke(null, layoutInflater) as VB
-            setContentView(mViewBinding.root)
+            setContentView(getLayout())
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {
@@ -37,6 +37,10 @@ abstract class StateViewBindingBaseActivity<VB : ViewBinding> : StateBaseActivit
         }
         initData()
         initView()
+    }
+
+    override fun getLayout(): ViewGroup {
+        return mViewBinding.root as ViewGroup
     }
 
 
