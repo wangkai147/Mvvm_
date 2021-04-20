@@ -33,8 +33,8 @@ abstract class StateBaseActivity : BaseActivity() {
         )
     }
 
-    abstract fun addLoadingLayout(): ViewGroup
-    abstract fun addErrorLayout(): ViewGroup
+    abstract fun addLoadingLayout(): View
+    abstract fun addErrorLayout(): View
     abstract fun getLayout(): ViewGroup
 
 

@@ -20,12 +20,12 @@ class MainActivityViewBinding : StateViewBindingBaseActivity<ActivityMainBinding
 
     override fun addLoadingLayout(): ViewGroup {
         return LayoutInflater.from(mContext)
-            .inflate(R.layout.common_base_loading, null) as ConstraintLayout
+            .inflate(R.layout.common_base_loading, null) as ViewGroup
     }
 
     override fun addErrorLayout(): ViewGroup {
         return LayoutInflater.from(mContext)
-            .inflate(R.layout.common_base_error, null) as ConstraintLayout
+            .inflate(R.layout.common_base_error, null) as ViewGroup
     }
 
     override fun setCreateBefore() {
