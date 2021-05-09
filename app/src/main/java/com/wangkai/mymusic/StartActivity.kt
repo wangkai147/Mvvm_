@@ -17,20 +17,15 @@ class StartActivity : ViewBindingBaseActivity<ActivityStartBinding>() {
 
         mViewBinding.animationView.playAnimation()
         setFullScreen()
-
+        initData()
     }
 
-    override fun setCreateBefore() {
-    }
-
-    override fun setContentBefore() {
-    }
 
     override fun getBundleExtras(extras: Bundle?) {
 
     }
 
-    override fun initData() {
+    fun initData() {
         //开屏动画
         val list = mutableListOf(
             "pride-hard-seltzer.json",
@@ -39,18 +34,10 @@ class StartActivity : ViewBindingBaseActivity<ActivityStartBinding>() {
             "logo-animation.json"
         )
         mViewBinding.animationView.addAnimatorUpdateListener {
-            if(it.animatedFraction == 1f) {
+            if (it.animatedFraction == 1f) {
                 startActivity<MainActivityViewBinding>()
             }
         }
         mViewBinding.animationView.setAnimation(list.random())
-    }
-
-    override fun initView() {
-
-    }
-
-    override fun initViewModel() {
-
     }
 }

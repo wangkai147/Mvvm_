@@ -178,4 +178,7 @@
     <color name="plum">#dda0dd</color><!--洋李色 -->
     <color name="gainsboro">#dcdcdc</color><!--淡灰色 -->
 
+    <color name="color_555555">#555555</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+
 </resources>

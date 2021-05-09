@@ -27,12 +27,8 @@ abstract class StateDataBindingBaseActivity<DB : ViewDataBinding> : StateBaseAct
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setCreateBefore()
         super.onCreate(savedInstanceState)
-        setContentBefore()
         setContentView(getLayout())
-        initView()
-        initData()
     }
 
     override fun getLayout(): ViewGroup {

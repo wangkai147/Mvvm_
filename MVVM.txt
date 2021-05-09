@@ -1,0 +1,4 @@
+ViewModel+LiveData+DataBinding
+ViewModel 持有数据
+LiveData 具有生命周期感知能力
+DataBinding 用于Data和UI双向绑定

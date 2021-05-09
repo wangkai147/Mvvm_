@@ -15,19 +15,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
     //封装一些用到的变量
     lateinit var mContext: Context
-    lateinit var TAG: String
+    lateinit var TAG: String //日志打印
+    lateinit var rootView: ViewGroup //activity根布局，用于动态添加view
 
     //提供一些公共方法接口
-    abstract fun setCreateBefore() //setCreateBefore之前的方法
-    abstract fun setContentBefore() //setContentView之前的方法
     abstract fun getBundleExtras(extras: Bundle?) //接收bundle数据
-
-    abstract fun initData()
-    abstract fun initView()
-    abstract fun initViewModel() //初始化ViewModel
-
-    //activity根布局，用于动态添加view
-    lateinit var rootView: ViewGroup
 
     //设置状态栏导航栏颜色
     open fun setBarColor(statusBarColor: Int, navigationBarColor: Int) {
@@ -35,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         window.navigationBarColor = navigationBarColor
     }
 
-    //app全屏
+    //设置app全屏
     open fun setFullScreen() {
         val controller: WindowInsetsControllerCompat? =
             ViewCompat.getWindowInsetsController(window.decorView)
@@ -53,6 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    //是否是横屏
     open fun isHorizontalScreen(): Boolean {
         return resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     }
@@ -86,16 +79,15 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         mContext = this
         TAG = mContext.javaClass.simpleName
         intent.extras?.let { getBundleExtras(it) }
 
-        super.onCreate(savedInstanceState)
         //初始化根布局
         rootView = this.window.decorView.findViewById(android.R.id.content)
         //设置状态栏并适配异性屏幕
         setPageStyle()
     }
-
-
 }
